@@ -138,25 +138,10 @@ class StudentDetailSerializer(serializers.ModelSerializer):
             "full_name",
             "contract",
             "degree",
+            "phone_number",
             "university",
             "student_amounts",
         )
-
-# class StudentSponsorUpdateSerializer(serializers.ModelSerializer):
-    # student_sponsor_phone_number = serializers.SerializerMethodField(method_name="phone_number")
-
-    # def phone_number(self, obj):
-    #     re = models.StudentSponsor.objects.filter(student=obj).values("phone_number", flat=True)
-    #     return re
-
-    # class Meta:
-    #     model = models.Student
-    #     fields = (
-    #         "full_name",
-    #         "contract",
-    #         "university",
-    #         "student_sponsor_phone_number"
-    #     )
 
 class StudentSponsorListSerializer(serializers.ModelSerializer):
 
@@ -168,19 +153,18 @@ class StudentSponsorListSerializer(serializers.ModelSerializer):
         )
 
 
-class StudentSponsorUpdateSerializer(serializers.ModelSerializer):
+class StudentUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Sponsor
+        model = models.Student
         fields = (
             "full_name",
-            "phone_number"
-        )
-        modell = models.Student
-        fields = (
+            "contract",
+            "phone_number",
             "university",
-            "contract"
         )
+
+        
 
 
 class StudentSponsorDeleteORCreateSerializer(serializers.ModelSerializer):
@@ -191,6 +175,17 @@ class StudentSponsorDeleteORCreateSerializer(serializers.ModelSerializer):
         model = models.StudentSponsor
         fields = (
             "sponsor",
-            "student",
             "amount",
+        )
+
+class StudentSponsorCreateSerializer(serializers.ModelSerializer):
+    
+
+
+    class Meta:
+        model = models.StudentSponsor
+        fields = (
+            "sponsor",
+            "amount",
+            "student"
         )

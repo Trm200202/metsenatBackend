@@ -76,11 +76,12 @@ class StudentSponsorAPIView(ListAPIView):
 
 class StudentSponsorUpdateAPIView(UpdateAPIView):
     queryset = Student.objects.all()
-    serializer_class = serializers.StudentSponsorUpdateSerializer
+    serializer_class = serializers.StudentUpdateSerializer
 
 class StudentSponsorCreateAPIView(CreateAPIView):
     queryset = StudentSponsor.objects.all()
-    serializer_class = serializers.StudentSponsorDeleteORCreateSerializer
+    serializer_class = serializers.StudentSponsorCreateSerializer
+
 
 class StudentSponsorDeleteAPIView(DestroyAPIView):
     queryset = StudentSponsor.objects.all()

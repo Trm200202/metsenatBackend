@@ -1,4 +1,5 @@
 from django.db import models
+import re
 from django.core.validators import RegexValidator
 from django import forms
 from django.http import HttpResponse
@@ -63,18 +64,19 @@ class University(models.Model):
 
     def __str__(self):
         return self.name
-
+phone_number = models.CharField(max_length=50,
+                                     validators=[RegexValidator(r'^\+998\d{9}$')],
+                                     verbose_name="Telefon raqami")
 class Student(models.Model):
      
     class DegreeChoice(models.TextChoices):
         BACHELOR = "bachelor", "bakalavr"
         MASTER = "master", "magistor"
 
-
-    full_name = models.CharField(max_length=100, verbose_name="To'liq ism")
     phone_number = models.CharField(max_length=50,
                                      validators=[RegexValidator(r'^\+998\d{9}$')],
-                                     verbose_name="Telefon raqami")
+                                     verbose_name="Telefon raqami",)
+    full_name = models.CharField(max_length=100, verbose_name="To'liq ism")
     contract = models.PositiveIntegerField(verbose_name="kantrakt summasi")
     degree = models.CharField(max_length=50,
                               choices=DegreeChoice.choices,

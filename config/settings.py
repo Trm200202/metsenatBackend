@@ -135,8 +135,5 @@ REST_FRAMEWORK = {
 }
 
 import os
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    "/var/www/static/",
-]
+STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = (BASE_DIR / "staticfiles",)
